@@ -7,5 +7,5 @@ resource "google_service_account_iam_binding" "sa" {
   service_account_id = google_service_account.sa.name
   role               = "roles/owner"
 
-  members = ["serviceAccount:minecraft@diamond-62188.iam.gserviceaccount.com"]
+  members = ["serviceAccount:${google_service_account.sa.email}"]
 }
