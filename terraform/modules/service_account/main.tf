@@ -3,9 +3,9 @@ resource "google_service_account" "sa" {
   display_name = "minecraft"
 }
 
-resource "google_service_account_iam_member" "sa" {
+resource "google_service_account_iam_binding" "sa" {
   service_account_id = google_service_account.sa.name
   role               = "roles/owner"
 
-  member = "serviceAccount:$(google_service_account.sa.email)"
+  members = ["serviceAccount:minecraft@diamond-62188.iam.gserviceaccount.com"]
 }
