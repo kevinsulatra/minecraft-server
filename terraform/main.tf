@@ -15,3 +15,13 @@ provider "google" {
 module "service_account" {
   source = "./modules/service_account"
 }
+
+module "gke" {
+  source = "./modules/gke"
+  depends_on = [
+    module.service_account
+  ]
+
+  name   = var.name
+  region = var.region
+}
