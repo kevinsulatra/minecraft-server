@@ -1,6 +1,6 @@
 resource "google_container_cluster" "primary" {
-  name     = "minecraft"
-  location = "europe-west2"
+  name     = var.name
+  location = var.region
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -9,6 +9,9 @@ resource "google_container_cluster" "primary" {
   initial_node_count       = 1
 }
 
+data "google_service_account" "minecraft" {
+  account_id = "minecraft"
+}
 resource "google_container_node_pool" "primary_preemptible_nodes" {
   name       = google_container_cluster.primary.name
   location   = google_container_cluster.primary.location
@@ -20,8 +23,8 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     machine_type = "e2-medium"
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    service_account = google_service_account.default.email
-    oauth_scopes    = [
+    service_account = data.google_service_account.minecraft.email
+    oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
