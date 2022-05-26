@@ -5,7 +5,7 @@ resource "google_service_account" "sa" {
 
 resource "google_service_account_iam_binding" "sa" {
   service_account_id = google_service_account.sa.name
-  role               = "roles/owner"
+  role               = "roles/container.admin"
 
   members = ["serviceAccount:${google_service_account.sa.email}"]
 }
