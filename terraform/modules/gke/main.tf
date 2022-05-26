@@ -1,6 +1,6 @@
-resource "google_container_cluster" "primary" {
+resource "google_container_cluster" "minecraft" {
   name     = var.name
-  location = var.region
+  location = "${var.region}-a"
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -12,10 +12,11 @@ resource "google_container_cluster" "primary" {
 data "google_service_account" "minecraft" {
   account_id = "minecraft"
 }
-resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = google_container_cluster.primary.name
-  location   = google_container_cluster.primary.location
-  cluster    = google_container_cluster.primary.name
+
+resource "google_container_node_pool" "minecraft_preemptible_nodes" {
+  name       = google_container_cluster.minecraft.name
+  location   = google_container_cluster.minecraft.location
+  cluster    = google_container_cluster.minecraft.name
   node_count = 1
 
   node_config {
