@@ -10,7 +10,7 @@ resource "google_container_cluster" "minecraft" {
 }
 
 data "google_service_account" "minecraft" {
-  account_id = "minecraft"
+  account_id = google_container_cluster.minecraft.name
 }
 
 resource "google_container_node_pool" "minecraft_preemptible_nodes" {
