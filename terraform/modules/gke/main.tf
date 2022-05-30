@@ -1,3 +1,7 @@
+# resource "google_compute_disk" "minecraft" {
+  
+# }
+
 resource "google_container_cluster" "minecraft" {
   name     = var.name
   location = "${var.region}-a"
@@ -21,7 +25,7 @@ resource "google_container_node_pool" "minecraft_preemptible_nodes" {
 
   node_config {
     preemptible  = true
-    machine_type = "e2-medium"
+    machine_type = "e2-standard-2"
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     service_account = data.google_service_account.minecraft.email

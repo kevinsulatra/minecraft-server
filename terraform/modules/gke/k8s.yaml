@@ -15,7 +15,28 @@ metadata:
 provisioner: kubernetes.io/gce-pd
 allowVolumeExpansion: true
 parameters:
-  type: pd-ssd
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
+
+---
+# Creating a persistent volume.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mc-bedrock
+spec:
+  storageClassName: "apps"
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    name: mc-bedrock
+    namespace: minecraft
+  gcePersistentDisk:
+    pdName: gke-minecraft-minecraft-b223979b-gcc1
+    fsType: ext4
 
 ---
 # Creating a persistent volume claim.
@@ -25,7 +46,7 @@ metadata:
   name: mc-bedrock
   namespace: minecraft
 spec:
-  storageClassName: fast-disk
+  storageClassName: "apps"
   accessModes:
     - ReadWriteOnce
   resources:
@@ -56,7 +77,7 @@ spec:
           resources:
             requests:
               cpu: 500m
-              memory: 2Gi
+              memory: 4Gi
           env:
             - name: EULA
               value: "TRUE"
