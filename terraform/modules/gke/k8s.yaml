@@ -46,12 +46,12 @@ spec:
           resources:
             requests:
               cpu: 500m
-              memory: 4Gi
+              memory: 2Gi
           env:
             - name: EULA
               value: "TRUE"
             - name: GAMEMODE
-              value: survival
+              value: adventure
             - name: DIFFICULTY
               value: normal
             - name: WHITE_LIST
