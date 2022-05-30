@@ -1,7 +1,7 @@
 ---
 # Creating a namespace called minecraft.
-kind: Namespace
 apiVersion: v1
+kind: Namespace
 metadata:
   name: minecraft
 
@@ -19,8 +19,8 @@ parameters:
 
 ---
 # Creating a persistent volume claim.
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: mc-bedrock
   namespace: minecraft
@@ -30,7 +30,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi
 
 ---
 # Creating a deployment for the Minecraft Bedrock server.
