@@ -1,9 +1,3 @@
-variable "project" {
-  description = "Google Project"
-  type        = string
-  default     = "diamond-62188"
-}
-
 variable "name" {
   description = "Server name"
   type        = string
