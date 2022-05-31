@@ -25,3 +25,10 @@ module "gke" {
   name   = var.name
   region = var.region
 }
+
+module "storage" {
+  source = "./modules/storage"
+
+  name   = var.name
+  region = var.region
+}

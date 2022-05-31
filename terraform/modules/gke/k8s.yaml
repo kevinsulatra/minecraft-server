@@ -28,14 +28,14 @@ metadata:
 spec:
   storageClassName: "apps"
   capacity:
-    storage: 5Gi
+    storage: 10Gi
   accessModes:
     - ReadWriteOnce
   claimRef:
     name: mc-bedrock
     namespace: minecraft
   gcePersistentDisk:
-    pdName: gke-minecraft-minecraft-b223979b-gcc1
+    pdName: minecraft
     fsType: ext4
 
 ---
@@ -51,7 +51,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 10Gi
 
 ---
 # Creating a deployment for the Minecraft Bedrock server.
@@ -77,6 +77,9 @@ spec:
           resources:
             requests:
               cpu: 500m
+              memory: 2Gi
+            limits:
+              cpu: 1000m
               memory: 4Gi
           env:
             - name: EULA
