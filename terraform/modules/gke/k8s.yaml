@@ -35,7 +35,7 @@ spec:
     name: mc-bedrock
     namespace: minecraft
   gcePersistentDisk:
-    pdName: gke-minecraft-minecraft-b223979b-gcc1
+    pdName: minecraft
     fsType: ext4
 
 ---

@@ -1,7 +1,3 @@
-# resource "google_compute_disk" "minecraft" {
-  
-# }
-
 resource "google_container_cluster" "minecraft" {
   name     = var.name
   location = "${var.region}-a"
