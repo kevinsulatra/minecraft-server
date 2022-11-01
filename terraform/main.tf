@@ -16,19 +16,19 @@ module "service_account" {
   source = "./modules/service_account"
 }
 
-module "gke" {
-  source = "./modules/gke"
-  depends_on = [
-    module.service_account
-  ]
+# module "gke" {
+#   source = "./modules/gke"
+#   depends_on = [
+#     module.service_account
+#   ]
 
-  name   = var.name
-  region = var.region
-}
+#   name   = var.name
+#   region = var.region
+# }
 
-module "storage" {
-  source = "./modules/storage"
+# module "storage" {
+#   source = "./modules/storage"
 
-  name   = var.name
-  region = var.region
-}
+#   name   = var.name
+#   region = var.region
+# }
